@@ -1,0 +1,257 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<style>
+label {
+	display: inline-block;
+	margin-bottom: 0px !important;
+	margin-right: 5px !important;
+}
+</style>
+
+	<!-- Page Title-->
+	<div class="page-title">
+		<div class="container">
+			<div class="column">
+				<h1>نمایش جدولی سایدبار سمت چپ</h1>
+			</div>
+			<div class="column">
+				<ul class="breadcrumbs">
+					<li><a href="index.html">خانه</a></li>
+					<li class="separator"></li>
+					<li><a href="index.html">فروشگاه</a></li>
+					<li class="separator"></li>
+					<li>نمایش جدولی سایدبار سمت چپ</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Page Content-->
+	<div class="container padding-bottom-3x mb-1">
+		<div class="row">
+			<!-- Products-->
+			<div class="col-xl-9 col-lg-8 order-lg-2">
+				<!-- Shop Toolbar-->
+				<section class="shop-toolbar pb-2 pt-2  mb-2 soft-shadow bg-white">
+					<div class="column pr-2 pl-2">
+						<h:form>
+							<div class="shop-sorting text-right">
+								<label for="sorting">ترتیب نمایش با : </label>
+								<h:selectOneMenu value="#{productsBean.brand}"
+									class="form-control" id="sorting">
+									<f:selectItem itemValue="آخرین محصولات"
+										itemLabel="آخرین محصولات" />
+									<f:selectItem itemValue="محبوبترین" itemLabel="محبوبترین" />
+									<f:selectItem itemValue="پربازدیدترین" itemLabel="پربازدیدترین" />
+									<f:selectItem itemValue="قیمت از کم به زیاد"
+										itemLabel="قیمت از کم به زیاد" />
+									<f:selectItem itemValue="قیمت از زیاد به کم"
+										itemLabel="قیمت از زیاد به کم" />
+								</h:selectOneMenu>
+
+							</div>
+						</h:form>
+					</div>
+
+				</section>
+				<!-- Products Grid-->
+				<section class="isotope-grid cols-3 pt-2 mb-2 soft-shadow bg-white"
+					jsf:id="refresh-prod" style="text-align: center;">
+
+					<div class="gutter-sizer"></div>
+					<div class="grid-sizer"></div>
+					<!-- Product-->
+
+					<ui:repeat var="prdc" value="#{productsBean.productDetails}">
+						<div class="grid-item border-grid" style="display: inline-block;">
+							<div class="product-card">
+								<div class="rating-stars">
+									<i class="icon-star filled"></i> <i class="icon-star filled"></i>
+									<i class="icon-star filled"></i> <i class="icon-star "></i> <i
+										class="icon-star "></i>
+								</div>
+								<a class="product-thumb mt-3" href="shop-single.html"> <!-- <img src="img/shop/products/32.jpg" alt="Product"/> -->
+									<h:graphicImage library="img" name="shop/products/32.jpg" />
+								</a>
+								<h3 class="product-title">
+									<a href="shop-single.html">#{prdc._source.name}</a>
+								</h3>
+								<h4 class="product-price">
+									<del>#{prdc._source.price}</del>
+									#{prdc._source.price} <span> تومان </span>
+								</h4>
+								<div class="product-buttons">
+									<button class="btn btn-outline-secondary btn-sm btn-wishlist"
+										data-toggle="tooltip" title="علاقه مندی">
+										<i class="icon-heart"></i>
+									</button>
+									<button class="btn btn-outline-primary btn-sm"
+										data-toast-type="success" data-toast-position="topRight"
+										data-toast-icon="icon-circle-check" data-toast-title=" محصول "
+										data-toast-message="با موفقیت به سبد اضافه شد !">افزودن
+										به سبد</button>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</section>
+				<!-- Pagination-->
+				<nav class="pagination bg-white soft-shadow" jsf:id="refresh-pagin">
+					<!-- <div class="column text-right hidden-xs-down pr-2"><a class="btn btn-outline-secondary btn-sm" href="#"> قبلی <i class="icon-arrow-right"></i></a></div> -->
+					<div class="column text-center">
+						<ul class="pages">
+
+
+							<ui:repeat var="pgs"
+								value="#{productsBean.findAllProductIndexSize()}">
+
+								<h:panelGroup
+									rendered="#{pgs.intValue() eq productsBean.pageNum}">
+									<li style="background-color: skyblue;"><h:form
+											enctype="multipart/form-data">
+											<h:commandLink
+												actionListener="#{productsBean.findProductIndexByDasteMultiBrand(9,pgs*9-9,pgs,Daste)}"
+												value="#{pgs.intValue()}">
+												<f:ajax render="refresh-prod pg1 refresh-pagin" />
+											</h:commandLink>
+										</h:form></li>
+								</h:panelGroup>
+
+								<h:panelGroup
+									rendered="#{pgs.intValue() ne productsBean.pageNum}">
+									<li><h:form enctype="multipart/form-data">
+											<h:commandLink
+												actionListener="#{productsBean.findProductIndexByDasteMultiBrand(9,pgs*9-9,pgs,Daste)}"
+												value="#{pgs.intValue()}">
+												<f:ajax render="refresh-prod pg1 refresh-pagin" />
+											</h:commandLink>
+										</h:form></li>
+								</h:panelGroup>
+
+							</ui:repeat>
+							<!--                   <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li>...</li>
+                  <li><a href="#">12</a></li> -->
+
+						</ul>
+					</div>
+					<!-- <div class="column text-left hidden-xs-down pl-2"><a class="btn btn-outline-secondary btn-sm" href="#"> بعدی <i class="icon-arrow-left"></i></a></div> -->
+				</nav>
+			</div>
+			<!-- Sidebar          -->
+			<div class="col-xl-3 col-lg-4 order-lg-1">
+				<aside class="sidebar">
+					<div class="padding-top-2x hidden-lg-up"></div>
+
+
+					<section
+						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
+						<h3 class="widget-title">فیلتر بر اساس مدل</h3>
+						<h:form prependId="false"> 
+
+							<!-- 					<ui:repeat var="mfi" value="#{mf.value}">
+					<label class="custom-control custom-checkbox d-block">
+					  <input class="custom-control-input" type="checkbox"/>
+					  <h:selectBooleanCheckbox value="" styleClass="custom-control-input"/>
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">#{mfi.toString()}
+						</span>
+					</label>
+					</ui:repeat> -->
+				    <label class="custom-control custom-checkbox d-block">
+					<h:selectManyCheckbox id="smc" value="#{productsBean.brandFilterList}" layout="pageDirection"  immediate="true">
+   			   	    <f:selectItems value="#{modelFilterBean.FilterBrand(Daste)}" var="mfi" itemLabel="#{mfi.toString()}" itemValue="#{mfi.toString()}"/>	
+					  <f:ajax execute="@form" listener="#{productsBean.itemSelected}" immediate="true" render="refresh-prod pg1 refresh-pagin"/>
+					</h:selectManyCheckbox>
+					</label>
+
+						</h:form>
+					</section>
+					<!-- Widget Size Filter-->
+					<section
+						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
+						<h3 class="widget-title">فیلتر بر اساس نو و دست دوم</h3>
+						<label class="custom-control custom-checkbox d-block"> <input
+							class="custom-control-input" type="checkbox" /> <span
+							class="custom-control-indicator"></span> <span
+							class="custom-control-description">بسیار بزرگ </span>
+						</label>
+					</section>
+					<section
+						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
+						<h3 class="widget-title">فیلتر بر اساس نو و دست دوم</h3>
+						<label class="custom-control custom-checkbox d-block"> <input
+							class="custom-control-input" type="checkbox" /> <span
+							class="custom-control-indicator"></span> <span
+							class="custom-control-description">بسیار بزرگ </span>
+						</label>
+					</section>
+
+					<section
+						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
+						<h3 class="widget-title">فیلتر بر عمده و تک</h3>
+						<label class="custom-control custom-checkbox d-block"> <input
+							class="custom-control-input" type="checkbox" /> <span
+							class="custom-control-indicator"></span> <span
+							class="custom-control-description">آدیداس </span>
+						</label> <label class="custom-control custom-checkbox d-block"> <input
+							class="custom-control-input" type="checkbox" /> <span
+							class="custom-control-indicator"></span> <span
+							class="custom-control-description">نایک </span>
+						</label>
+					</section>
+					<section
+						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
+						<h3 class="widget-title">فیلتر بر اساس موجود و ناموجود</h3>
+						<label class="custom-control custom-checkbox d-block"> <input
+							class="custom-control-input" type="checkbox" /> <span
+							class="custom-control-indicator"></span> <span
+							class="custom-control-description">بسیار بزرگ </span>
+						</label>
+					</section>
+
+					<!-- Promo Banner-->
+					<section class="promo-box"
+						style="background-image: url(img/banners/02.jpg);">
+						<!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.-->
+						<span class="overlay-dark" style="opacity: .45;"></span>
+						<div
+							class="promo-box-content text-center padding-top-3x padding-bottom-2x">
+							<h4 class="text-light text-thin text-shadow">پوشاک جدید با</h4>
+							<h3 class="text-bold text-light text-shadow">تخفیف ویژه</h3>
+							<a class="btn btn-sm btn-primary" href="#">همین حالا خرید
+								کنید</a>
+						</div>
+					</section>
+				</aside>
+			</div>
+		</div>
+	</div>
+	<!-- Site Footer-->
+	<script>
+    jsf.ajax.addOnEvent(function(data) {
+        var ajaxstatus = data.status; // Can be "begin", "complete" and "success"
+       // var ajaxloader = document.getElementById("ajaxloader");
+
+        switch (ajaxstatus) {
+            case "begin": // This is called right before ajax request is been sent.
+            	$('html, body').animate({ scrollTop: 220 }, 'slow');
+                break;
+
+        //    case "complete": // This is called right after ajax response is received.
+         //       ajaxloader.style.display = 'none';
+          //      break;
+
+         //   case "success": // This is called when ajax response is successfully processed.
+                // NOOP.
+           //     break;
+        }
+    });
+</script>
+</ui:composition>

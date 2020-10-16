@@ -1,0 +1,166 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<div class="offcanvas-wrapper bg-white ">
+		<!-- Page Title-->
+		<div class="page-title">
+			<div class="container">
+				<div class="column">
+					<h1>پنل ادمین</h1>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Page Content-->
+		<div class="container padding-bottom-3x mb-2">
+			<div class="row">
+				<div class="col-lg-4">
+					
+					<nav class="list-group text-right">
+						<a class="list-group-item with-badge active" href="account-orders.html"><i
+							class="icon-bag"></i> افزودن محصول</a> <a
+							class="list-group-item" href="account-profile.html"><i
+							class="icon-head"></i> پروفایل کاربری</a> <a class="list-group-item"
+							href="account-address.html"><i class="icon-map"></i> آدرسهای
+							من</a> <a class="list-group-item with-badge"
+							href="account-wishlist.html"><i class="icon-heart"></i> علاقه
+							مندی ها<span class="badge badge-primary badge-pill">3</span></a> <a
+							class="list-group-item with-badge" href="account-tickets.html"><i
+							class="icon-tag"></i> لیست تیکت ها<span
+							class="badge badge-primary badge-pill">4</span></a>
+					</nav>
+				</div>
+				<div class="col-lg-8 text-right">
+					<div class="padding-top-2x mt-2 hidden-lg-up"></div>
+					<h:form class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="brand" for="in1" />
+								<h:inputTextarea value="#{productsBean.brand}" id="in1" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="contry" for="in2" />
+								<h:inputTextarea value="#{productsBean.contry}" id="in2" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="daste" for="in3" />
+								<h:inputTextarea value="#{productsBean.daste}" id="in3" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="description" for="in4" />
+								<h:inputTextarea value="#{productsBean.description}" id="in4" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="model" for="in5" />
+								<h:inputTextarea value="#{productsBean.model}" id="in5" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="mojod" for="in6" />
+								<h:selectBooleanCheckbox value="#{productsBean.mojod}" id="in6"/>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="name" for="in7" />
+								<h:inputTextarea value="#{productsBean.name}" id="in7" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="new_old" for="in8" />
+								<h:selectBooleanCheckbox value="#{productsBean.mojod}"  id="in8"/>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="noe" for="in9" />
+								<h:inputTextarea value="#{productsBean.noe}" id="in9" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="price" for="in10" />
+								<h:inputTextarea value="#{productsBean.price}" id="in10" styleClass="form-control" />
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="release_date" for="in11" />
+								<h:inputTextarea value="#{productsBean.release_date}" id="in11" styleClass="form-control" />
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="shoar" for="in12" />
+								<h:inputTextarea value="#{productsBean.shoar}" id="in12" styleClass="form-control" />
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="takhfif_darsad" for="in13" />
+								<h:inputTextarea value="#{productsBean.takhfif_darsad}" id="in13" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<h:outputLabel value="omde_tak" for="in14" />
+							<h:selectManyListbox value="#{productsBean.omde_tak}" id="in14">
+								<f:selectItem itemValue="tak" itemLabel="tak" />
+								<f:selectItem itemValue="omde" itemLabel="omde" />
+							</h:selectManyListbox>
+						</div>
+						<div class="col-md-12">
+							<h:outputLabel value="color" for="in15" />
+							<h:selectManyListbox value="#{productsBean.color}" id="in15">
+								<f:selectItem itemValue="black" itemLabel="black" />
+								<f:selectItem itemValue="yellow" itemLabel="yellow" />
+								<f:selectItem itemValue="green" itemLabel="green" />
+							</h:selectManyListbox>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel value="vijegi" for="in16" />
+								<h:inputTextarea value="#{productsBean.vijegiIn}" id="in16" styleClass="form-control" dir="ltr"/>
+							</div>
+						</div>
+
+<h:commandButton action="#{productsBean.insertToProducts()}" value="SHOOOOOOOOD" />
+
+						<div class="col-12">
+							<hr class="mt-2 mb-3" />
+							<div
+								class="d-flex flex-wrap justify-content-between align-items-center">
+								<label class="custom-control custom-checkbox d-block"> <input
+									class="custom-control-input" type="checkbox" /><span
+									class="custom-control-indicator"></span><span
+									class="custom-control-description">مشترک شدن در خبرنامه
+										فروشگاه</span>
+								</label>
+								<button class="btn btn-primary margin-right-none" type="button"
+									data-toast-position="topRight" data-toast-type="success"
+									data-toast-icon="icon-circle-check" data-toast-title="Success!"
+									data-toast-message="Your profile updated successfuly.">بروز
+									رسانی پروفایل</button>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>

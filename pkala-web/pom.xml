@@ -34,7 +34,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.3_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 
 		<!-- Import the JPA API, we use provided scope as the API is included in 
@@ -177,6 +181,12 @@
 			<artifactId>pkalares</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20200518</version>
+</dependency>
 
 	</dependencies>
 
