@@ -226,7 +226,7 @@ public class ProductIndexDao implements ProductIndexDaoLocal {
     }
 
     @Override
-    public List<ProductDetail> findProductIndexByMultiBrandDaste(int size,int from,String brand,String daste) throws java.lang.Exception {
+    public List<ProductDetail> findProductIndexByMultiBrandDaste(int size,int from,String brand,String daste,boolean newOld,boolean mojod,String omdeTak) throws java.lang.Exception {
     	try {
     	Client client=ClientBuilder.newClient();
     	DasteBrandFilterRequest request=new DasteBrandFilterRequest();
@@ -244,6 +244,27 @@ public class ProductIndexDao implements ProductIndexDaoLocal {
         match.setDaste(daste);
         filter.setMatch(match);
         bool.getFilter().add(filter);
+        if(mojod==true) {
+        Filter filter2=new Filter();
+        ir.persikala.request.dasteBrand.Match2 match2=new ir.persikala.request.dasteBrand.Match2();
+        match2.setMojod(mojod);
+        filter2.setMatch(match2);
+        bool.getFilter().add(filter2);
+        }
+        if(newOld==true) {
+        Filter filter3=new Filter();
+        ir.persikala.request.dasteBrand.Match3 match3=new ir.persikala.request.dasteBrand.Match3();
+        match3.setNew_old(newOld);
+        filter3.setMatch(match3);
+        bool.getFilter().add(filter3);
+        }
+        if(!omdeTak.equals("")) {
+        Filter filter4=new Filter();
+        ir.persikala.request.dasteBrand.Match4 match4=new ir.persikala.request.dasteBrand.Match4();
+        match4.setOmde_tak(omdeTak);
+        filter4.setMatch(match4);
+        bool.getFilter().add(filter4);
+        }
         bool.getMust().add(must);
         query.setBool(bool);
         request.setQuery(query);

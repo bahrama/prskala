@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
+	
+    <div class="offcanvas-wrapper  bg-white text-right">
+      <!-- Page Title-->
+      <div class="page-title">
+        <div class="container">
+          <div class="column">
+            <h1>ورود / ثبت حساب کاربری</h1>
+          </div>
+        </div>
+      </div>
+  <!-- Page Content-->
+      <div class="container padding-bottom-3x mb-2">
+        <div class="row">
+          <div class="col-md-6" style="margin: auto;">
+            
+			<h:form styleClass="login-box" style="background: #e1e7ec;" prependId="false">
+			<h:messages id="msgs" errorStyle="color:red" fatalStyle="color:green;"/>
+              <h4 class="margin-bottom-1x">فرم ثبت نام</h4>
+              <div class="form-group input-group">
+                <h:inputText id="inp1" value="#{userBean.name}" a:placeholder="نام" styleClass="form-control"/><span class="input-group-addon"><i class="icon-mail"></i></span>
+                <h:message for="inp1" id="err1" errorStyle="color:red;"/>
+              </div>
+              <div class="form-group input-group">
+                <h:inputText id="inp2" value="#{userBean.lastname}" a:placeholder="نام خانوادگی" styleClass="form-control"/><span class="input-group-addon"><i class="icon-lock"></i></span>
+                <h:message for="inp2" id="err2" errorStyle="color:red;"/>
+              </div>
+              <div class="form-group input-group">
+                <h:inputText id="inp3" value="#{userBean.email}" a:placeholder="ایمیل (اختیاری)" styleClass="form-control"/><span class="input-group-addon"><i class="icon-mail"></i></span>
+                <h:message for="inp3" id="err3" errorStyle="color:red;"/>
+              </div>
+              <div class="form-group input-group">
+                <h:inputText id="inp4" value="#{userBean.mobile}" a:placeholder="موبایل" styleClass="form-control"/><span class="input-group-addon"><i class="icon-lock"></i></span>
+                 <h:message for="inp4" id="err4" errorStyle="color:red;"/>
+              </div>
+              <div class="form-group input-group">
+                <h:inputSecret id="passw" value="#{userBean.password}" a:placeholder="رمز عبور" styleClass="form-control" binding="#{userBean.component}">
+                <f:ajax execute="@form" render="passwordError" />
+                </h:inputSecret>
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <h:message for="passw" id="passwordError" errorStyle="color:red;"/>
+              </div>
+              <div class="form-group input-group">
+                <h:inputSecret value="#{userBean.password2}" id="passw2" a:placeholder="تکرار رمز عبور" styleClass="form-control">
+                 <f:ajax execute="@form" render="password2Error" listener="#{userBean.itemPass}" immediate="true"/>
+                </h:inputSecret>
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <h:message for="passw2" id="password2Error" errorStyle="color:red;"/>
+              </div>
+              <div class="text-center text-sm-right">
+                <h:commandButton action="#{userBean.InsertUser()}" value="ثبت نام" styleClass="btn btn-primary margin-bottom-none">
+                <f:ajax execute="@form" render="err1 err2 err3 err4 passwordError password2Error msgs" />
+                </h:commandButton>
+              </div>
+            </h:form>
+          </div>
+        
+        </div>
+      </div>
+       </div>
+	</ui:composition>

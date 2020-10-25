@@ -53,8 +53,8 @@ public class ProductIndexService implements ProductIndexServiceLocal {
     }
     
     @Override
-    public List<ProductDetail> findProductIndexByMultiBrandDaste(int size,int from,String brand,String daste) throws java.lang.Exception {
-    	return productIndexDaoLocal.findProductIndexByMultiBrandDaste(size, from, brand, daste);
+    public List<ProductDetail> findProductIndexByMultiBrandDaste(int size,int from,String brand,String daste,boolean newOld,boolean mojod,String omdeTak) throws java.lang.Exception {
+    	return productIndexDaoLocal.findProductIndexByMultiBrandDaste(size, from, brand, daste, newOld, mojod, omdeTak);
     }
     
     

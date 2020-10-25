@@ -1,18 +1,18 @@
 package ir.persikala.request.dasteBrand;
 
 public class Filter {
-	Match MatchObject;
+	Object MatchObject;
 
 
 	 // Getter Methods 
 
-	 public Match getMatch() {
+	 public Object getMatch() {
 	  return MatchObject;
 	 }
 
 	 // Setter Methods 
 
-	 public void setMatch(Match matchObject) {
+	 public void setMatch(Object matchObject) {
 	  this.MatchObject = matchObject;
 	 }
 	}

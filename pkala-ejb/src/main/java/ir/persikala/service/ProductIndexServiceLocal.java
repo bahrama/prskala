@@ -22,7 +22,7 @@ public interface ProductIndexServiceLocal {
 
 	List<ProductDetail> findProductIndexByBrand(int size, int from, String brand) throws Exception;
 
-	List<ProductDetail> findProductIndexByMultiBrandDaste(int size, int from, String brand, String daste)
-			throws Exception;
+	List<ProductDetail> findProductIndexByMultiBrandDaste(int size, int from, String brand, String daste,
+			boolean newOld, boolean mojod, String omdeTak) throws Exception;
 
 }

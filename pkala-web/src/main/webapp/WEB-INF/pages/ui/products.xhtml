@@ -16,16 +16,7 @@ label {
 	<div class="page-title">
 		<div class="container">
 			<div class="column">
-				<h1>نمایش جدولی سایدبار سمت چپ</h1>
-			</div>
-			<div class="column">
-				<ul class="breadcrumbs">
-					<li><a href="index.html">خانه</a></li>
-					<li class="separator"></li>
-					<li><a href="index.html">فروشگاه</a></li>
-					<li class="separator"></li>
-					<li>نمایش جدولی سایدبار سمت چپ</li>
-				</ul>
+				<h1>محصولات فروشگاه اینترنتی پرسی کالا</h1>
 			</div>
 		</div>
 	</div>
@@ -154,16 +145,6 @@ label {
 						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
 						<h3 class="widget-title">فیلتر بر اساس مدل</h3>
 						<h:form prependId="false"> 
-
-							<!-- 					<ui:repeat var="mfi" value="#{mf.value}">
-					<label class="custom-control custom-checkbox d-block">
-					  <input class="custom-control-input" type="checkbox"/>
-					  <h:selectBooleanCheckbox value="" styleClass="custom-control-input"/>
-						<span class="custom-control-indicator"></span>
-						<span class="custom-control-description">#{mfi.toString()}
-						</span>
-					</label>
-					</ui:repeat> -->
 				    <label class="custom-control custom-checkbox d-block">
 					<h:selectManyCheckbox id="smc" value="#{productsBean.brandFilterList}" layout="pageDirection"  immediate="true">
    			   	    <f:selectItems value="#{modelFilterBean.FilterBrand(Daste)}" var="mfi" itemLabel="#{mfi.toString()}" itemValue="#{mfi.toString()}"/>	
@@ -177,43 +158,43 @@ label {
 					<section
 						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
 						<h3 class="widget-title">فیلتر بر اساس نو و دست دوم</h3>
-						<label class="custom-control custom-checkbox d-block"> <input
-							class="custom-control-input" type="checkbox" /> <span
-							class="custom-control-indicator"></span> <span
-							class="custom-control-description">بسیار بزرگ </span>
-						</label>
-					</section>
-					<section
-						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
-						<h3 class="widget-title">فیلتر بر اساس نو و دست دوم</h3>
-						<label class="custom-control custom-checkbox d-block"> <input
-							class="custom-control-input" type="checkbox" /> <span
-							class="custom-control-indicator"></span> <span
-							class="custom-control-description">بسیار بزرگ </span>
-						</label>
+						<h:form prependId="false"> 
+				    <label class="custom-control custom-checkbox d-block">
+					<h:selectManyCheckbox id="smc2"  layout="pageDirection"  immediate="true">
+   			   	    <f:selectItem itemLabel="دست دوم" itemValue="true"/>	
+					  <f:ajax execute="@form" listener="#{productsBean.itemSelected2}" immediate="true" render="refresh-prod pg1 refresh-pagin"/>
+					</h:selectManyCheckbox>
+					</label>
+
+						</h:form>
 					</section>
 
 					<section
 						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
 						<h3 class="widget-title">فیلتر بر عمده و تک</h3>
-						<label class="custom-control custom-checkbox d-block"> <input
-							class="custom-control-input" type="checkbox" /> <span
-							class="custom-control-indicator"></span> <span
-							class="custom-control-description">آدیداس </span>
-						</label> <label class="custom-control custom-checkbox d-block"> <input
-							class="custom-control-input" type="checkbox" /> <span
-							class="custom-control-indicator"></span> <span
-							class="custom-control-description">نایک </span>
-						</label>
+						<h:form prependId="false"> 
+				    <label class="custom-control custom-checkbox d-block">
+					<h:selectManyCheckbox id="smc3"  layout="pageDirection"  immediate="true">
+   			   	    <f:selectItem itemLabel="عمده" itemValue="omde"/>	
+   			   	    <f:selectItem itemLabel="تک" itemValue="tak"/>	
+					  <f:ajax execute="@form" listener="#{productsBean.itemSelected3}" immediate="true" render="refresh-prod pg1 refresh-pagin"/>
+					</h:selectManyCheckbox>
+					</label>
+
+						</h:form>
 					</section>
 					<section
 						class="widget widget-border pt-2 pb-3 mb-2 bg-white soft-shadow">
 						<h3 class="widget-title">فیلتر بر اساس موجود و ناموجود</h3>
-						<label class="custom-control custom-checkbox d-block"> <input
-							class="custom-control-input" type="checkbox" /> <span
-							class="custom-control-indicator"></span> <span
-							class="custom-control-description">بسیار بزرگ </span>
-						</label>
+						<h:form prependId="false"> 
+				    <label class="custom-control custom-checkbox d-block">
+					<h:selectManyCheckbox id="smc4"  layout="pageDirection"  immediate="true">
+   			   	    <f:selectItem itemLabel="موجود" itemValue="true"/>	
+					  <f:ajax execute="@form" listener="#{productsBean.itemSelected4}" immediate="true" render="refresh-prod pg1 refresh-pagin"/>
+					</h:selectManyCheckbox>
+					</label>
+
+						</h:form>
 					</section>
 
 					<!-- Promo Banner-->

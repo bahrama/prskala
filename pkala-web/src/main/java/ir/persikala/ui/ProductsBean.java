@@ -62,6 +62,9 @@ public class ProductsBean implements Serializable {
 	private int forosh;
 	
 	private String pageBrand="";
+	private boolean pageMojod=false;
+	private boolean pageNewOld=false;
+	private String pageOmdeTak="";
 	
 	private String[] brandFilterList;
 
@@ -389,10 +392,64 @@ public class ProductsBean implements Serializable {
     	
     }
     
-public void test() {
-	System.err.println("PPPPPPPPPPPPPP");
-
-}
+    public void itemSelected2(AjaxBehaviorEvent event) {
+    	System.err.println("AAAAAAAAAAAAAAJJJJJJJJAAAAAAAAAAAX22222222222");
+    	this.productDetails.clear();
+    	try {
+    		this.pageNewOld=Boolean.parseBoolean(event.getFacesContext().getExternalContext().getRequestParameterValuesMap().get("smc2")[0]);
+		} catch (Exception e) {
+			
+		}
+		try {
+			
+		    String daste = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("daste");
+		    findProductIndexByDasteMultiBrand("9", "0", "1",daste);
+			}catch (Exception e) {
+				System.err.println("doc is little");
+			}
+    	
+    }
+    
+    
+    public void itemSelected3(AjaxBehaviorEvent event) {
+    	System.err.println("AAAAAAAAAAAAAAJJJJJJJJAAAAAAAAAAAX22222222222");
+    	this.productDetails.clear();
+    	this.pageOmdeTak="";
+    	try {
+    	for (int i = 0; i < event.getFacesContext().getExternalContext().getRequestParameterValuesMap().get("smc3").length; i++) {
+			System.err.println(event.getFacesContext().getExternalContext().getRequestParameterValuesMap().get("smc3")[i]);
+			this.pageOmdeTak+=event.getFacesContext().getExternalContext().getRequestParameterValuesMap().get("smc3")[i]+"-";
+		}
+    	}catch (Exception e) {
+             System.err.println("omde tak oncheck");
+		}
+		try {
+		    String daste = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("daste");
+		    findProductIndexByDasteMultiBrand("9", "0", "1",daste);
+			}catch (Exception e) {
+				System.err.println("doc is little");
+			}
+    	
+    }
+    
+    public void itemSelected4(AjaxBehaviorEvent event) {
+    	System.err.println("AAAAAAAAAAAAAAJJJJJJJJAAAAAAAAAAAX22222222222");
+    	this.productDetails.clear();
+    	try {
+    		this.pageMojod=Boolean.parseBoolean(event.getFacesContext().getExternalContext().getRequestParameterValuesMap().get("smc4")[0]);
+		} catch (Exception e) {
+			System.err.println("unckecked");
+		}
+		try {
+			
+		    String daste = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("daste");
+		    findProductIndexByDasteMultiBrand("9", "0", "1",daste);
+			}catch (Exception e) {
+				System.err.println("doc is little");
+			}
+    	
+    }
+    
 
 
 public void findProductIndexByDasteMultiBrand(String size, String from, String pageNum,String daste) {
@@ -400,7 +457,7 @@ public void findProductIndexByDasteMultiBrand(String size, String from, String p
 	this.pageNum = Integer.parseInt(pageNum);
 	this.productDetails.clear();
 	this.productDetails
-			.addAll(productIndexServiceLocal.findProductIndexByMultiBrandDaste(Integer.parseInt(size), Integer.parseInt(from),this.pageBrand,daste));
+			.addAll(productIndexServiceLocal.findProductIndexByMultiBrandDaste(Integer.parseInt(size), Integer.parseInt(from),this.pageBrand,daste,this.pageNewOld,this.pageMojod,this.pageOmdeTak));
 	}catch (Exception e) {
 		System.err.println("product is empty");
 	}
